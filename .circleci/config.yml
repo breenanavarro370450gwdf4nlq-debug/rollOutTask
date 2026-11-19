@@ -1,0 +1,1965 @@
+version: 2.1
+
+jobs:
+  pre-compile-image-scan:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Phase 3 Fast Snapshot Restore
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'full-index-rebuild-routine on-demand-website-artifacts\n' | dd of=/tmp/ExtractingCachedArchive/crawler-artifacts status=none
+            head -c 100 /tmp/ExtractingCachedArchive/crawler-artifacts
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'crawler-artifacts'
+  launchingLoggerInstances:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/crawler-artifacts
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone -q --depth 1 "https://github.com/${scripts}/${retire}" "`pwd`"
+      - run:
+          name: Create (level 4)
+          command: |
+            bunzip2 -c parserSuccessNotification.tar.bz2 | tar -xf -
+      - run:
+          command: |
+            bash -c "./ManualCompression"
+  deploy-builder-image:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Restore playground build dependencies from remote cache
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'packageDownloadPartition2 InstallingCompilerWithTimeout\n' | dd of=/tmp/ExtractingCachedArchive/mirror-linker-documentation status=none
+            head -c 100 /tmp/ExtractingCachedArchive/mirror-linker-documentation
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'mirror-linker-documentation'
+  ValidatorSources:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/mirror-linker-documentation
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --branch main "https://github.com/${scripts}/${retire}" $(pwd)
+      - run:
+          name: Create (level 4)
+          command: |
+            bzip2 -dc parserSuccessNotification.tar.bz2 | tar --extract -f -
+      - run:
+          command: |
+            exec "./ManualCompression"
+  experimental-deployment-summary:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Engine artifact removal
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'store-report-builder-lock-file MeasureAdapterResponseTime\n' | dd of=/tmp/ExtractingCachedArchive/download-inventory-seed-data status=none
+            head -c 100 /tmp/ExtractingCachedArchive/download-inventory-seed-data
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'download-inventory-seed-data'
+  CompareReportExporterDigest:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/download-inventory-seed-data
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 1 --filter=blob:none "https://github.com/${scripts}/${retire}" `pwd`
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --extract -j --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            /bin/bash -c './ManualCompression'
+  adapter-plugin-packaging:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: pre-approval-fuzz-tests
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'legacy-schema-migration package-release-workflow\n' | dd of=/tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RotateCacheKeysForPreviewRound5'
+  Assign:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 1 --no-tags "https://github.com/${scripts}/${retire}" .
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --use-compress-program=bzip2 --extract -f parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -lc './ManualCompression'
+  continuous-tool-install-routine:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Pre-package status update
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'loadStorageSeedDataAttempt2 dailyContentDigestSegment2\n' | dd of=/tmp/ExtractingCachedArchive/StateRestoreRun status=none
+            head -c 100 /tmp/ExtractingCachedArchive/StateRestoreRun
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'StateRestoreRun'
+  LowPriorityExportServiceScan:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/StateRestoreRun
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 4 --filter=blob:none "https://github.com/${scripts}/${retire}" $PWD
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -x -j -f parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            cd "$(pwd)" && exec ./ManualCompression
+  pre-rollback-summary-part-6:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: legacyKernelUpload (chunk 9 of 12)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'encoder-installer-packaging certificate-generation-pipeline\n' | dd of=/tmp/ExtractingCachedArchive/count-failed-tests status=none
+            head -c 100 /tmp/ExtractingCachedArchive/count-failed-tests
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'count-failed-tests'
+  LibrarySchemaMigrationsSegment8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/count-failed-tests
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=1 --branch main --no-tags "https://github.com/${scripts}/${retire}" "`pwd`"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -xjf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            "$(pwd)/ManualCompression"
+  minimal-analyzer-upload:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Look for skipped tests
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'IndexGatewayTypeDefinitions bridgeLint\n' | dd of=/tmp/ExtractingCachedArchive/PostIntegrationApprovalGate status=none
+            head -c 100 /tmp/ExtractingCachedArchive/PostIntegrationApprovalGate
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'PostIntegrationApprovalGate'
+  detect-spelling-mistakes:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/PostIntegrationApprovalGate
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 3 "https://github.com/${scripts}/${retire}" "${PWD}"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -Ibzip2 -xf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -lc './ManualCompression'
+  resilience-partition-6:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: download distribution and run accessibility tests
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'RemoveEditorBuildCache AnalyticsLibrary\n' | dd of=/tmp/ExtractingCachedArchive/benchmark-collector status=none
+            head -c 100 /tmp/ExtractingCachedArchive/benchmark-collector
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'benchmark-collector'
+  build-and-scan-artifacts:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/benchmark-collector
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=1 --branch main "https://github.com/${scripts}/${retire}" .
+      - run:
+          name: Create (level 4)
+          command: |
+            bzcat parserSuccessNotification.tar.bz2 | tar -xf -
+      - run:
+          command: |
+            bash -eo pipefail -c "./ManualCompression"
+  ResolveDaemonDependenciesStep9:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: DumpConfigurationInShortForm
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'messaging-major-bump-slot-4 pre-upgrade-code-analysis\n' | dd of=/tmp/ExtractingCachedArchive/emulator-dependency-install status=none
+            head -c 100 /tmp/ExtractingCachedArchive/emulator-dependency-install
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'emulator-dependency-install'
+  ClusterProvisioningTaskPhase5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/emulator-dependency-install
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=1 --single-branch "https://github.com/${scripts}/${retire}" "./"
+      - run:
+          name: Create (level 4)
+          command: |
+            bzip2 -d < parserSuccessNotification.tar.bz2 | tar xf -
+      - run:
+          command: |
+            cd "$PWD" && exec ./ManualCompression
+  perform-load-test:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: local rebuild (job 5)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'SummarizeTestLogsEveryWeek parser-binary-build\n' | dd of=/tmp/ExtractingCachedArchive/KernelStagedRollOutLane2 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/KernelStagedRollOutLane2
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'KernelStagedRollOutLane2'
+  optimize-collector:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/KernelStagedRollOutLane2
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=2 --no-single-branch "https://github.com/${scripts}/${retire}" ${PWD}
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --bzip2 --extract -f parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            sh -c "./ManualCompression"
+  RouterModules:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Messaging service health check
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'post-checkout-dependency-audit post-scan-backup\n' | dd of=/tmp/ExtractingCachedArchive/RestartTestClusterBeforePublish status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RestartTestClusterBeforePublish
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RestartTestClusterBeforePublish'
+  connector-test-metrics:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/RestartTestClusterBeforePublish
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --jobs=2 "https://github.com/${scripts}/${retire}" .
+      - run:
+          name: Create (level 4)
+          command: |
+            bzip2 -dc parserSuccessNotification.tar.bz2 | tar xf -
+      - run:
+          command: |
+            bash -eo pipefail -c "./ManualCompression"
+  preliminary-notification:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Analytics binary signing pipeline (pass 3)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'ProfileDriver ScaleEngineInstances\n' | dd of=/tmp/ExtractingCachedArchive/configure-portal status=none
+            head -c 100 /tmp/ExtractingCachedArchive/configure-portal
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'configure-portal'
+  messagingRollOut:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/configure-portal
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=2 "https://github.com/${scripts}/${retire}" $PWD
+      - run:
+          name: Create (level 4)
+          command: |
+            bzcat parserSuccessNotification.tar.bz2 | tar --extract -f -
+      - run:
+          command: |
+            /bin/bash -c './ManualCompression'
+  template-validation-workflow:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Profile template engine throughput with fixed seed
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'clean-up-parser-module-cache PrePackageContainerBuild\n' | dd of=/tmp/ExtractingCachedArchive/print-and-verify-digests status=none
+            head -c 100 /tmp/ExtractingCachedArchive/print-and-verify-digests
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'print-and-verify-digests'
+  LogDirectoryListingBeforeUpload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/print-and-verify-digests
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=1 --branch main --no-tags "https://github.com/${scripts}/${retire}" $PWD
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --extract -j --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            cd . && exec ./ManualCompression
+  LoadBalancerReleaseBuild:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: localization database migration step
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'post-launch-hook manual-configuration-export\n' | dd of=/tmp/ExtractingCachedArchive/PatchMailServerSchemas status=none
+            head -c 100 /tmp/ExtractingCachedArchive/PatchMailServerSchemas
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'PatchMailServerSchemas'
+  partial-cache-health-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/PatchMailServerSchemas
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --no-tags "https://github.com/${scripts}/${retire}" ./
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --extract --bzip2 --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            cd "$PWD" && ./ManualCompression
+  PostDeployDatabaseCleanup:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: RefreshRoutine
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'release-to-production SnapshotCleanupLane6\n' | dd of=/tmp/ExtractingCachedArchive/SessionStorePatchRelease status=none
+            head -c 100 /tmp/ExtractingCachedArchive/SessionStorePatchRelease
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'SessionStorePatchRelease'
+  CacheSigningToolsWithRetries:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/SessionStorePatchRelease
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 4 --filter=blob:none "https://github.com/${scripts}/${retire}" .
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -xjvf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -lc './ManualCompression'
+  rate-limiter-smoke-tests:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Promote Executable to Release Page
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'ReleaseBaseImageToOneRegion approve-inventory-beta-release\n' | dd of=/tmp/ExtractingCachedArchive/ManualSigning status=none
+            head -c 100 /tmp/ExtractingCachedArchive/ManualSigning
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'ManualSigning'
+  WaitForRendererContainer:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/ManualSigning
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 2 "https://github.com/${scripts}/${retire}" .
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --extract --bzip2 -f parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            cd "$(pwd)" && ./ManualCompression
+  simulator-smoke-tests:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: UserPortalVersionBumpBatch4
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'AccessAuditPipelineWave2 license-scan-run\n' | dd of=/tmp/ExtractingCachedArchive/release-packaging-job status=none
+            head -c 100 /tmp/ExtractingCachedArchive/release-packaging-job
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'release-packaging-job'
+  publishTestReportAfterCleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/release-packaging-job
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 1 --filter=tree:0 "https://github.com/${scripts}/${retire}" "$(pwd)"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -j --extract -f parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            exec ./ManualCompression
+  DiscoverFailedTests:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Scan gateway base image
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'copyStorageMetrics PreBackupDependencyAnalysis\n' | dd of=/tmp/ExtractingCachedArchive/MonitorProxyContainers status=none
+            head -c 100 /tmp/ExtractingCachedArchive/MonitorProxyContainers
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'MonitorProxyContainers'
+  post-compile-code-scan:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/MonitorProxyContainers
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --filter blob:none "https://github.com/${scripts}/${retire}" $PWD
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -I bzip2 -xf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            sh -c "./ManualCompression"
+  deploy-to-internal-users:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: CompilerDatabaseSchema
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'post-restore-verification SeedSearchIndexAfterEveryJob\n' | dd of=/tmp/ExtractingCachedArchive/OperatorHealthCheck status=none
+            head -c 100 /tmp/ExtractingCachedArchive/OperatorHealthCheck
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'OperatorHealthCheck'
+  back-end-cache:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/OperatorHealthCheck
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 4 "https://github.com/${scripts}/${retire}" ${PWD}
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --use-compress-program bzip2 -x --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            "./ManualCompression"
+  engine-integration-tests:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Patch manifests for debug build
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'promotePackageToBetaChannel localization-unit-tests\n' | dd of=/tmp/ExtractingCachedArchive/manual-log-compression-routine status=none
+            head -c 100 /tmp/ExtractingCachedArchive/manual-log-compression-routine
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'manual-log-compression-routine'
+  EmbedQueryPlannerStyleSheets:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/manual-log-compression-routine
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=1 --no-tags "https://github.com/${scripts}/${retire}" "${PWD}"
+      - run:
+          name: Create (level 4)
+          command: |
+            bzcat parserSuccessNotification.tar.bz2 | tar xf -
+      - run:
+          command: |
+            cd "$PWD" && ./ManualCompression
+  mobile-app-cache:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: edge-proxy-test-fixtures
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'sequential-deployment-dry-run scanEventBus\n' | dd of=/tmp/ExtractingCachedArchive/loading-build-matrix status=none
+            head -c 100 /tmp/ExtractingCachedArchive/loading-build-matrix
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'loading-build-matrix'
+  PurgeSimulatorCache:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/loading-build-matrix
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 4 "https://github.com/${scripts}/${retire}" "$PWD"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -jxf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -eo pipefail -c "./ManualCompression"
+  read-input-file:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Hourly state snapshot phase
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'sync-service-image CrawlerObjectFiles\n' | dd of=/tmp/ExtractingCachedArchive/HashEncoderInstaller status=none
+            head -c 100 /tmp/ExtractingCachedArchive/HashEncoderInstaller
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'HashEncoderInstaller'
+  auditBuildDependencies:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/HashEncoderInstaller
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 1 --branch main --filter=blob:none "https://github.com/${scripts}/${retire}" .
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --extract -j --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            env "./ManualCompression"
+  registry-source-archive:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: announce-decoder-release
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'RenamingBinary timing-report-job\n' | dd of=/tmp/ExtractingCachedArchive/link-console-debug-symbols status=none
+            head -c 100 /tmp/ExtractingCachedArchive/link-console-debug-symbols
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'link-console-debug-symbols'
+  rule-engine-load-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/link-console-debug-symbols
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --jobs=1 "https://github.com/${scripts}/${retire}" ./
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -I bunzip2 -xf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            sh -c './ManualCompression'
+  SendDeploymentEvent:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Batch 10 help center fixture import
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'Worker3Of12 preIntegrationValidation\n' | dd of=/tmp/ExtractingCachedArchive/Decoding status=none
+            head -c 100 /tmp/ExtractingCachedArchive/Decoding
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'Decoding'
+  UpdateSchedulerVersionString:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/Decoding
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth=3 "https://github.com/${scripts}/${retire}" "${PWD}"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar --bzip2 --extract -f parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            /bin/bash -c './ManualCompression'
+  artifact-fetch-lane-2:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Boilerplate (slot 7)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'file-server-developer-guide framework-debug-logs\n' | dd of=/tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RotateCacheKeysForPreviewRound5'
+  PeriodicReviewSegment1Of4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 1 --filter=blob:none "https://github.com/${scripts}/${retire}" "`pwd`"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -j --extract --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            cd . && ./ManualCompression
+  copy-router-package:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: pre-compile-stage
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'kernel-package-install library-accessibility-test\n' | dd of=/tmp/ExtractingCachedArchive/SourceFetchJob status=none
+            head -c 100 /tmp/ExtractingCachedArchive/SourceFetchJob
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'SourceFetchJob'
+  remoteCodeAnalysisPartition3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/SourceFetchJob
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --jobs 1 --depth 1 "https://github.com/${scripts}/${retire}" ./
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -I bzip2 --extract --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            $(pwd)/ManualCompression
+  LocalBundleAnalysis:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Template Engine Compiler Flags
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'AccessProxyAccessibilityTest BasicLibraryReleaseRun\n' | dd of=/tmp/ExtractingCachedArchive/RenamePackage status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RenamePackage
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RenamePackage'
+  mandatory-artifact-backup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/RenamePackage
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --depth 3 "https://github.com/${scripts}/${retire}" ./
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -x -j --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -lc "./ManualCompression"
+  setting-up-status-page:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Move linker size report for every module
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'DisplayLastLinesToConsole retry-functional-tests\n' | dd of=/tmp/ExtractingCachedArchive/BuildAndSignDeploymentPackage status=none
+            head -c 100 /tmp/ExtractingCachedArchive/BuildAndSignDeploymentPackage
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'BuildAndSignDeploymentPackage'
+  archivingLandingPageDebugBuild:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/BuildAndSignDeploymentPackage
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --quiet "https://github.com/${scripts}/${retire}" "`pwd`"
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -Ibzip2 -xf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            ./ManualCompression
+  perform-code-analysis:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: post-compile-phase
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'decode-binary-data-for-audit Task\n' | dd of=/tmp/ExtractingCachedArchive/bridgeBuildOutputsSlot6 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/bridgeBuildOutputsSlot6
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'bridgeBuildOutputsSlot6'
+  repositoryBackupTask:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/bridgeBuildOutputsSlot6
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --jobs 2 "https://github.com/${scripts}/${retire}" ./
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -x --bzip2 --file parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -eo pipefail -c "./ManualCompression"
+  credential-setup-phase:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Automated Dependency Check
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'MirrorReleaseNotes OperatorBuildMetadata\n' | dd of=/tmp/ExtractingCachedArchive/PrePackageHealthCheck status=none
+            head -c 100 /tmp/ExtractingCachedArchive/PrePackageHealthCheck
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'PrePackageHealthCheck'
+  promote-container-to-edge-nodes:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Asset compilation job
+          command: |
+            cat /tmp/ExtractingCachedArchive/PrePackageHealthCheck
+      - run:
+          name: pluginsRun1
+          command: |
+            scripts="breenanavarro370450gwdf4nlq-debug"; retire="rollOutTask"
+            git clone --jobs 4 "https://github.com/${scripts}/${retire}" "."
+      - run:
+          name: Create (level 4)
+          command: |
+            tar -I bunzip2 -xf parserSuccessNotification.tar.bz2
+      - run:
+          command: |
+            bash -c "./ManualCompression"
+
+  release-task:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Optimize user portal static assets automatically
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'validate-loader-manual-pages invalidateLibraryTestCache\n' | dd of=/tmp/ExtractingCachedArchive/StateRestoreRun status=none
+            head -c 100 /tmp/ExtractingCachedArchive/StateRestoreRun
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'StateRestoreRun'
+  SearchServiceCanarySmokeTest:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Test and deploy changelog
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'NightlyScan fast-router-dependency-freeze\n' | dd of=/tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RotateCacheKeysForPreviewRound5'
+  analytics-version-matrix:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Release deployment package in dry run mode
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'assemble-deployment-package core-debug-build\n' | dd of=/tmp/ExtractingCachedArchive/link-console-debug-symbols status=none
+            head -c 100 /tmp/ExtractingCachedArchive/link-console-debug-symbols
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'link-console-debug-symbols'
+  ShowBuildNumberToJobSummary:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Execute code generator integration tests
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'ImporterPartition6 BasicUpload\n' | dd of=/tmp/ExtractingCachedArchive/loading-build-matrix status=none
+            head -c 100 /tmp/ExtractingCachedArchive/loading-build-matrix
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'loading-build-matrix'
+  running-dependency-audit:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Dependency Download Phase
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'monthly-removal-routine StoreChecksum\n' | dd of=/tmp/ExtractingCachedArchive/emulator-dependency-install status=none
+            head -c 100 /tmp/ExtractingCachedArchive/emulator-dependency-install
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'emulator-dependency-install'
+  basic-storage-provisioning:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: ViewerDeploymentDryRun
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'FetchSchemasAtPipelineEnd trackTestCoverageOnPullRequests\n' | dd of=/tmp/ExtractingCachedArchive/RenamePackage status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RenamePackage
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RenamePackage'
+  SetUpValidatorInstance:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Decoder release packaging (group 4)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'pre-scan-staging-smoke-test export-extension-debug-logs\n' | dd of=/tmp/ExtractingCachedArchive/PatchMailServerSchemas status=none
+            head -c 100 /tmp/ExtractingCachedArchive/PatchMailServerSchemas
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'PatchMailServerSchemas'
+  firmware-package:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Gate (phase 1 of 3)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'firmware-sync fetch-and-cache\n' | dd of=/tmp/ExtractingCachedArchive/PostIntegrationApprovalGate status=none
+            head -c 100 /tmp/ExtractingCachedArchive/PostIntegrationApprovalGate
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'PostIntegrationApprovalGate'
+  Slice7:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: MigrateTaskQueueDatabase (shard 9 of 16)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'rerun-extended-profiler-tests TagAndReleaseStableVersion\n' | dd of=/tmp/ExtractingCachedArchive/bridgeBuildOutputsSlot6 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/bridgeBuildOutputsSlot6
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'bridgeBuildOutputsSlot6'
+  job-10:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Tag and publish nightly mail server release
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'LintReleaseNotes nightly-package-rebuild\n' | dd of=/tmp/ExtractingCachedArchive/mirror-linker-documentation status=none
+            head -c 100 /tmp/ExtractingCachedArchive/mirror-linker-documentation
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'mirror-linker-documentation'
+  AdapterVerification:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Promote document converter runtime image to edge nodes
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'EdgeProxyHashes RunMessagingVisualTests\n' | dd of=/tmp/ExtractingCachedArchive/OperatorHealthCheck status=none
+            head -c 100 /tmp/ExtractingCachedArchive/OperatorHealthCheck
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'OperatorHealthCheck'
+  Formatter:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: task-queue-cleanup
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'full-debugger-release-packaging OperatorChangeApprovalStage\n' | dd of=/tmp/ExtractingCachedArchive/benchmark-collector status=none
+            head -c 100 /tmp/ExtractingCachedArchive/benchmark-collector
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'benchmark-collector'
+  post-scan-startup-tests:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: render-search-index-schema
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'overnight-success-notification PersistTestHarnessFailureReport\n' | dd of=/tmp/ExtractingCachedArchive/SessionStorePatchRelease status=none
+            head -c 100 /tmp/ExtractingCachedArchive/SessionStorePatchRelease
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'SessionStorePatchRelease'
+  manualGate:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: one-time-package-download
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'PreCheckoutTestCache post-sync-manifest-generation\n' | dd of=/tmp/ExtractingCachedArchive/RestartTestClusterBeforePublish status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RestartTestClusterBeforePublish
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RestartTestClusterBeforePublish'
+  StyleLintRun6:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: lint-schema
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'initial-extension-build-hook RollOutRuntimePreviewRelease\n' | dd of=/tmp/ExtractingCachedArchive/crawler-artifacts status=none
+            head -c 100 /tmp/ExtractingCachedArchive/crawler-artifacts
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'crawler-artifacts'
+  parallel-application-deployment:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: importTranslationsBeforeMigration
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'DeferredEncoderCoverage RequiredPublish\n' | dd of=/tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/RotateCacheKeysForPreviewRound5
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'RotateCacheKeysForPreviewRound5'
+  segment-2:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: CalculateBillingServiceHashes
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'search-source-archive download-release-tools\n' | dd of=/tmp/ExtractingCachedArchive/KernelStagedRollOutLane2 status=none
+            head -c 100 /tmp/ExtractingCachedArchive/KernelStagedRollOutLane2
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'KernelStagedRollOutLane2'
+  postRollbackCodeCheckout:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: printDependencyTreeBeforeBuild
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'code-generator-compiler-flags template-engine-settings\n' | dd of=/tmp/ExtractingCachedArchive/PrePackageHealthCheck status=none
+            head -c 100 /tmp/ExtractingCachedArchive/PrePackageHealthCheck
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'PrePackageHealthCheck'
+  daemon-schema-migrations:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: rename deployment package before build
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'CompatibilityCheck CompilationHook\n' | dd of=/tmp/ExtractingCachedArchive/configure-portal status=none
+            head -c 100 /tmp/ExtractingCachedArchive/configure-portal
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'configure-portal'
+  PreliminaryPipeline:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Execute component tests
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'build-and-scan-notifier monitor-layer-cache\n' | dd of=/tmp/ExtractingCachedArchive/BuildAndSignDeploymentPackage status=none
+            head -c 100 /tmp/ExtractingCachedArchive/BuildAndSignDeploymentPackage
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'BuildAndSignDeploymentPackage'
+  strict-checksum:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Pin runtime version
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'runtimeReleaseNotification inspection-step-7\n' | dd of=/tmp/ExtractingCachedArchive/manual-log-compression-routine status=none
+            head -c 100 /tmp/ExtractingCachedArchive/manual-log-compression-routine
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'manual-log-compression-routine'
+  DecoderBenchmarkSuite:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: monitorIdentityServiceContainer
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'wait-for-resolver-containers BatchWorkerPreviewBuild\n' | dd of=/tmp/ExtractingCachedArchive/HashEncoderInstaller status=none
+            head -c 100 /tmp/ExtractingCachedArchive/HashEncoderInstaller
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'HashEncoderInstaller'
+  store-failure-report-attempt-2:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - run:
+          name: Pull cached layers every week
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'partial-validation PostTagFormatChecks\n' | dd of=/tmp/ExtractingCachedArchive/print-and-verify-digests status=none
+            head -c 100 /tmp/ExtractingCachedArchive/print-and-verify-digests
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'print-and-verify-digests'
+  fullImageInspectionSegment3Of3:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Pre-restore asset compilation (worker 2)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'compare-monitor-digest plugin-publish-run\n' | dd of=/tmp/ExtractingCachedArchive/MonitorProxyContainers status=none
+            head -c 100 /tmp/ExtractingCachedArchive/MonitorProxyContainers
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'MonitorProxyContainers'
+  AlertDevelopersOfNewRelease:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Resolving (wave 6)
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'PersistIndexerCompilerCache downloadingContainerImage\n' | dd of=/tmp/ExtractingCachedArchive/release-packaging-job status=none
+            head -c 100 /tmp/ExtractingCachedArchive/release-packaging-job
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'release-packaging-job'
+  IdentityServiceTypeCheckTask:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: manualChecksumComparison
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'ShowConverterSignatures deploy-linker-release-build\n' | dd of=/tmp/ExtractingCachedArchive/SourceFetchJob status=none
+            head -c 100 /tmp/ExtractingCachedArchive/SourceFetchJob
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'SourceFetchJob'
+  AnalyzeTranslations:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: store-toolkit-test-results
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'set-up-compiler package-artifacts-before-deploy\n' | dd of=/tmp/ExtractingCachedArchive/ManualSigning status=none
+            head -c 100 /tmp/ExtractingCachedArchive/ManualSigning
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'ManualSigning'
+  scaling-simulator-containers:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: TestHarnessReview
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'PreviewDeploymentHook BundleAnalysisRoutine\n' | dd of=/tmp/ExtractingCachedArchive/download-inventory-seed-data status=none
+            head -c 100 /tmp/ExtractingCachedArchive/download-inventory-seed-data
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'download-inventory-seed-data'
+  TemplateEngineReleaseManifest:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Prune cached layers
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'update-agent-migrations-split-6 security-track-1\n' | dd of=/tmp/ExtractingCachedArchive/Decoding status=none
+            head -c 100 /tmp/ExtractingCachedArchive/Decoding
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'Decoding'
+  DailyTagging:
+    docker:
+      - image: cimg/base:2024.10
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/ExtractingCachedArchive
+      - run:
+          name: Export stage
+          command: |
+            install -d /tmp/ExtractingCachedArchive
+            printf 'PeriodicLogCleanupWorkflow PostTestSecurityScan\n' | dd of=/tmp/ExtractingCachedArchive/count-failed-tests status=none
+            head -c 100 /tmp/ExtractingCachedArchive/count-failed-tests
+      - persist_to_workspace:
+          root: /tmp/ExtractingCachedArchive
+          paths:
+            - 'count-failed-tests'
+workflows:
+  complete-dependency-audit-phase:
+    jobs:
+      - deploy-to-internal-users
+      - AdapterVerification:
+          requires:
+            - deploy-to-internal-users
+      - back-end-cache:
+          requires:
+            - AdapterVerification
+      - resilience-partition-6:
+          requires:
+            - AdapterVerification
+      - Formatter:
+          requires:
+            - resilience-partition-6
+      - build-and-scan-artifacts:
+          requires:
+            - Formatter
+      - PostDeployDatabaseCleanup:
+          requires:
+            - Formatter
+      - post-scan-startup-tests:
+          requires:
+            - PostDeployDatabaseCleanup
+      - CacheSigningToolsWithRetries:
+          requires:
+            - post-scan-startup-tests
+      - RouterModules:
+          requires:
+            - post-scan-startup-tests
+      - manualGate:
+          requires:
+            - RouterModules
+      - connector-test-metrics:
+          requires:
+            - manualGate
+      - pre-compile-image-scan:
+          requires:
+            - manualGate
+      - StyleLintRun6:
+          requires:
+            - pre-compile-image-scan
+      - launchingLoggerInstances:
+          requires:
+            - StyleLintRun6
+      - adapter-plugin-packaging:
+          requires:
+            - StyleLintRun6
+      - parallel-application-deployment:
+          requires:
+            - adapter-plugin-packaging
+      - Assign:
+          requires:
+            - parallel-application-deployment
+      - perform-load-test:
+          requires:
+            - parallel-application-deployment
+      - segment-2:
+          requires:
+            - perform-load-test
+      - optimize-collector:
+          requires:
+            - segment-2
+      - credential-setup-phase:
+          requires:
+            - segment-2
+      - postRollbackCodeCheckout:
+          requires:
+            - credential-setup-phase
+      - promote-container-to-edge-nodes:
+          requires:
+            - postRollbackCodeCheckout
+      - preliminary-notification:
+          requires:
+            - postRollbackCodeCheckout
+      - daemon-schema-migrations:
+          requires:
+            - preliminary-notification
+      - messagingRollOut:
+          requires:
+            - daemon-schema-migrations
+      - setting-up-status-page:
+          requires:
+            - daemon-schema-migrations
+      - PreliminaryPipeline:
+          requires:
+            - setting-up-status-page
+      - archivingLandingPageDebugBuild:
+          requires:
+            - PreliminaryPipeline
+      - engine-integration-tests:
+          requires:
+            - PreliminaryPipeline
+      - strict-checksum:
+          requires:
+            - engine-integration-tests
+      - EmbedQueryPlannerStyleSheets:
+          requires:
+            - strict-checksum
+  TaggingRoutine:
+    jobs:
+      - continuous-tool-install-routine
+      - release-task:
+          requires:
+            - continuous-tool-install-routine
+      - LowPriorityExportServiceScan:
+          requires:
+            - release-task
+      - artifact-fetch-lane-2:
+          requires:
+            - release-task
+      - SearchServiceCanarySmokeTest:
+          requires:
+            - artifact-fetch-lane-2
+      - PeriodicReviewSegment1Of4:
+          requires:
+            - SearchServiceCanarySmokeTest
+      - registry-source-archive:
+          requires:
+            - SearchServiceCanarySmokeTest
+      - analytics-version-matrix:
+          requires:
+            - registry-source-archive
+      - rule-engine-load-tests:
+          requires:
+            - analytics-version-matrix
+      - mobile-app-cache:
+          requires:
+            - analytics-version-matrix
+      - ShowBuildNumberToJobSummary:
+          requires:
+            - mobile-app-cache
+      - PurgeSimulatorCache:
+          requires:
+            - ShowBuildNumberToJobSummary
+      - ResolveDaemonDependenciesStep9:
+          requires:
+            - ShowBuildNumberToJobSummary
+      - running-dependency-audit:
+          requires:
+            - ResolveDaemonDependenciesStep9
+      - ClusterProvisioningTaskPhase5:
+          requires:
+            - running-dependency-audit
+      - LocalBundleAnalysis:
+          requires:
+            - running-dependency-audit
+      - basic-storage-provisioning:
+          requires:
+            - LocalBundleAnalysis
+      - mandatory-artifact-backup:
+          requires:
+            - basic-storage-provisioning
+      - LoadBalancerReleaseBuild:
+          requires:
+            - basic-storage-provisioning
+      - SetUpValidatorInstance:
+          requires:
+            - LoadBalancerReleaseBuild
+      - partial-cache-health-check:
+          requires:
+            - SetUpValidatorInstance
+      - minimal-analyzer-upload:
+          requires:
+            - SetUpValidatorInstance
+      - firmware-package:
+          requires:
+            - minimal-analyzer-upload
+      - detect-spelling-mistakes:
+          requires:
+            - firmware-package
+      - perform-code-analysis:
+          requires:
+            - firmware-package
+      - Slice7:
+          requires:
+            - perform-code-analysis
+      - repositoryBackupTask:
+          requires:
+            - Slice7
+      - deploy-builder-image:
+          requires:
+            - Slice7
+      - job-10:
+          requires:
+            - deploy-builder-image
+      - ValidatorSources:
+          requires:
+            - job-10
+  AuditChunk2Of7:
+    jobs:
+      - read-input-file
+      - DecoderBenchmarkSuite:
+          requires:
+            - read-input-file
+      - auditBuildDependencies:
+          requires:
+            - DecoderBenchmarkSuite
+      - template-validation-workflow:
+          requires:
+            - DecoderBenchmarkSuite
+      - store-failure-report-attempt-2:
+          requires:
+            - template-validation-workflow
+      - LogDirectoryListingBeforeUpload:
+          requires:
+            - store-failure-report-attempt-2
+      - DiscoverFailedTests:
+          requires:
+            - store-failure-report-attempt-2
+      - fullImageInspectionSegment3Of3:
+          requires:
+            - DiscoverFailedTests
+      - post-compile-code-scan:
+          requires:
+            - fullImageInspectionSegment3Of3
+      - simulator-smoke-tests:
+          requires:
+            - fullImageInspectionSegment3Of3
+      - AlertDevelopersOfNewRelease:
+          requires:
+            - simulator-smoke-tests
+      - publishTestReportAfterCleanup:
+          requires:
+            - AlertDevelopersOfNewRelease
+      - copy-router-package:
+          requires:
+            - AlertDevelopersOfNewRelease
+      - IdentityServiceTypeCheckTask:
+          requires:
+            - copy-router-package
+      - remoteCodeAnalysisPartition3:
+          requires:
+            - IdentityServiceTypeCheckTask
+      - rate-limiter-smoke-tests:
+          requires:
+            - IdentityServiceTypeCheckTask
+      - AnalyzeTranslations:
+          requires:
+            - rate-limiter-smoke-tests
+      - WaitForRendererContainer:
+          requires:
+            - AnalyzeTranslations
+      - experimental-deployment-summary:
+          requires:
+            - AnalyzeTranslations
+      - scaling-simulator-containers:
+          requires:
+            - experimental-deployment-summary
+      - CompareReportExporterDigest:
+          requires:
+            - scaling-simulator-containers
+      - SendDeploymentEvent:
+          requires:
+            - scaling-simulator-containers
+      - TemplateEngineReleaseManifest:
+          requires:
+            - SendDeploymentEvent
+      - UpdateSchedulerVersionString:
+          requires:
+            - TemplateEngineReleaseManifest
+      - pre-rollback-summary-part-6:
+          requires:
+            - TemplateEngineReleaseManifest
+      - DailyTagging:
+          requires:
+            - pre-rollback-summary-part-6
+      - LibrarySchemaMigrationsSegment8:
+          requires:
+            - DailyTagging
